@@ -1,0 +1,144 @@
+/* ----- 標題樣式 ----- */
+
+/* h1 (主標題) (Lesson 2) */
+h1 {
+    color: red; /* 你選擇的紅色 */
+}
+
+/* ----- 圖片樣式 (Lesson 13 修正版) ----- */
+
+/* R6: 使用 ID (#) 選擇器，專門控制「大頭貼」 */
+#profile-pic {
+    width: 150px;       /* 150px 寬 */
+    height: auto;       /* 高度自動 */
+    border-radius: 25%; /* 圓形 */
+}
+
+/* R6: 使用 Class (.) 選擇器，統一控制「所有」截圖 */
+.gallery-image {
+    width: 100px;           /* R6: 滿足你的需求 (和大頭貼一樣寬) */
+    height: auto;           /* 高度自動 */
+    border: 1px solid #ccc; /* 加上淺色邊框 */
+    border-radius: 0;       /* 截圖用方形 */
+}
+
+/* ----- R6/R9: V5.0 - 兩欄式 Flexbox 佈局 (For products.html) ----- */
+
+/* 1. 總容器 (.page-container) */
+.page-container {
+    display: flex; /* R6 關鍵：啟用 Flexbox 佈局！ */
+    width: 90%;    /* 總寬度 90% */
+    margin: 20px auto; /* 上下 20px，左右自動 (置中) */
+}
+
+/* 2. 左側欄 (.sidebar) */
+.sidebar {
+    flex-basis: 200px;  /* R6: 給它 200px 的「基礎寬度」 */
+    margin-right: 20px; /* R6: 和右邊的內容隔開 20px */
+    padding: 15px;      /* R6: 內部留白 */
+    background-color: #f4f4f4; /* R6: 給個淺灰色背景，方便辨識 */
+    border-radius: 8px; /* R6: 加個圓角 */
+}
+
+/* 3. 右側主內容 (.main-content) */
+.main-content {
+    flex: 1; /* R6 關鍵：告訴它「吃掉所有剩下的空間」！ */
+}
+
+/* R6 (選用)：美化 V3.0 商品卡片 (來自 products.js) */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* R6: 加上一點陰影 */
+}
+
+/* R6 (選用)：美化商品圖片 */
+.product-card img {
+    width: 100%; /* R6: 讓圖片 100% 寬 */
+    max-width: 200px; /* R6: 但最大不要超過 200px */
+    height: auto;
+    border-radius: 4px; /* R6: 圖片也加個小圓角 */
+}
+/* ----- R6/R9: V5.0 - 兩欄式 Flexbox 佈局 (For products.html) ----- */
+
+/* R7/R6 提醒：你(學員)在 Turn 57 遺漏了這一塊！ */
+/* 1. 總容器 (.page-container) */
+.page-container {
+    display: flex; /* R6 關鍵：啟用 Flexbox 佈局！ */
+    width: 90%;    /* 總寬度 90% */
+    margin: 20px auto; /* 上下 20px，左右自動 (置中) */
+}
+
+/* R7/R6 提醒：你(學員)在 Turn 57 應該「已經」有以下這些規則了 */
+/* 2. 左側欄 (.sidebar) */
+.sidebar {
+    flex-basis: 200px;  /* R6: 給它 200px 的「基礎寬度」 */
+    margin-right: 20px; /* R6: 和右邊的內容隔開 20px */
+    /* ... (其他 .sidebar 規則) ... */
+    background-color: #f4f4f4; /* R6: 灰色背景 */
+}
+
+/* 3. 右側主內容 (.main-content) */
+.main-content {
+    flex: 1; /* R6 關鍵：告訴它「吃掉所有剩下的空間」！ */
+}
+
+/* ... (以及 R6 在 Turn 57 提供的 .product-card 規則) ... */
+
+/* ----- R6/R9: V5.1 - 最終版兩欄式 + 卡片 Flexbox 佈局 ----- */
+
+/* R6: (V5.0) 總容器 (保持不變) */
+.page-container {
+    display: flex; 
+    width: 90%;    
+    margin: 20px auto; 
+}
+
+/* R6: (V5.0) 左側欄 (保持不變) */
+.sidebar {
+    flex-basis: 200px;  
+    margin-right: 20px; 
+    padding: 15px;      
+    background-color: #f4f4f4; 
+    border-radius: 8px; 
+}
+
+/* R6: (V5.0) 右側主內容 (保持不變) */
+.main-content {
+    flex: 1; 
+}
+
+/* ----- R6/R9: V5.1 卡片內部 Flexbox (重點修改) ----- */
+
+/* 1. 卡片總容器 (.product-card) */
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+    /* R6/R9 V5.1 關鍵新增：在「卡片內部」啟用 Flexbox！ */
+    display: flex;
+    justify-content: space-between; /* R6: 讓左右元素推到最開 */
+    align-items: flex-start;      /* R6: 頂端對齊 */
+}
+
+/* 2. (V5.1 新增) 文字資訊容器 (.product-info) */
+.product-info {
+    flex: 1; /* R6: 告訴文字容器「吃掉所有能吃的空間」 */
+    margin-right: 15px; /* R6: 和右邊的圖片 隔開 */
+}
+
+/* 3. (V5.1 新增) 卡片圖片 (.product-card-image) */
+.product-card-image {
+    flex-basis: 150px;  /* R6: 給圖片 150px 的「基礎寬度」 */
+    flex-shrink: 0;   /* R6: 告訴圖片「不准縮小」 */
+    width: 150px;       /* R6: 確保寬度 */
+    height: auto;
+    border-radius: 4px; 
+}
