@@ -11,7 +11,7 @@ h1 {
 #profile-pic {
     width: 150px;       /* 150px 寬 */
     height: auto;       /* 高度自動 */
-    border-radius: 25%; /* 圓形 */
+    border-radius: 39%; /* 圓形 */
 }
 
 /* R6: 使用 Class (.) 選擇器，統一控制「所有」截圖 */
