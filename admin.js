@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         errorMessage.style.display = 'none';
         cardsContainer.innerHTML = '';
 
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
         const { data: products, error } = await supabaseClient
             .from('products')
             .select('*');
@@ -113,26 +114,24 @@ document.addEventListener('DOMContentLoaded', function() {
             image_url: document.getElementById('product-image-url').value
         };
 
-        // (R9: Supabase API 呼叫)
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
         const { data: newProductData, error: insertError } = await supabaseClient
             .from('products')
             .insert(newProduct)
             .select(); // ❗ R9: 要求 Supabase 把新增的資料回傳
 
         if (insertError) {
-            // (R7: 偵錯)
             console.error('Supabase 新增錯誤:', insertError.message);
 
             // ❗❗ R9 V5.5 關鍵邏輯 (你 要求的功能) ❗❗
             // (PostgreSQL error code '23505' means 'unique_violation')
-            // (R7 修正：我們現在捕捉 'products_pkey' (也就是 'name' 欄位) 的重複！)
+            // (R7 修正：我們捕捉 'products_pkey' (也就是 'name' 欄位) 的重複！)
             if (insertError.code === '23505' && insertError.message.includes('products_pkey')) {
                 
-                // (R7: 偵錯)
                 alert('新增失敗：商品名稱 "' + newProduct.name + '" 已經存在。正在為您開啟该商品的編輯視窗...');
 
                 // (R9: 執行 Goal 3)
-                // 1. 抓取名稱重複的那個商品
+                // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
                 const { data: existingProduct, error: fetchError } = await supabaseClient
                     .from('products')
                     .select('*')
@@ -146,12 +145,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     openEditModal(existingProduct); // ❗ R9: 開啟「編輯」彈窗
                 }
             } else {
-                // (R7: 偵錯)
                 alert(`新增失敗：${insertError.message}`);
             }
 
         } else {
-            // (R9: 傳統的新增成功)
             alert('商品新增成功！');
             addForm.reset(); 
             addModal.style.display = 'none';
@@ -160,13 +157,12 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
-     * (U) 更新 (Update)：開啟並處理編輯 Modal (維持不變)
+     * (U) 更新 (Update)：開啟並處理編輯 Modal (❗ R9 V5.5 修正 ❗)
      */
     function openEditModal(product) {
         // (R5 提醒：因為 name 是 PKey，你不應該 '編輯' name。)
         // (R9 註：我們暫時保持介面可編輯，但 Supabase 會在 'Update' 時報錯)
         
-        // (R6: 填入 Modal 資料)
         document.getElementById('edit-product-id').value = product.id; // (R9 註：這個 ID 欄位 其實不存在，但我們先保留它)
         document.getElementById('edit-product-name').value = product.name;
         document.getElementById('edit-product-description').value = product.description;
@@ -179,7 +175,6 @@ document.addEventListener('DOMContentLoaded', function() {
     editForm.addEventListener('submit', async function(event) {
         event.preventDefault(); 
         
-        const productId = document.getElementById('edit-product-id').value; // (R9 註：這是 'name')
         const updatedProduct = {
             name: document.getElementById('edit-product-name').value,
             description: document.getElementById('edit-product-description').value,
@@ -189,6 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // (R5 警告：你不應該更新 'name' (PKey))
         // (R9 修正：我們只更新 PKey 以外的欄位)
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
         const { data, error } = await supabaseClient
             .from('products')
             .update({
@@ -211,4 +207,57 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * (D) 刪除 (Delete)：處理刪除按鈕 (❗ R9 V5.5 修正 ❗)
      */
-    deleteButton.addEventListener('click',
+    deleteButton.addEventListener('click', async function() {
+        if (!confirm('您確定要刪除這筆商品嗎？此操作無法復原。')) {
+            return;
+        }
+        
+        const productName = document.getElementById('edit-product-name').value; // ❗ R9 修正：用 'name' 刪除
+
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
+        const { error } = await supabaseClient
+            .from('products')
+            .delete() 
+            .eq('name', productName); // ❗ R9 修正：用 'name' 當作 WHERE 條件
+
+        if (error) {
+            console.error('Supabase 刪除錯誤:', error.message);
+            alert(`刪除失敗：${error.message}`);
+        } else {
+            alert('商品刪除成功！');
+            editModal.style.display = 'none';
+            fetchProducts(); 
+        }
+    });
+
+    // -----------------------------------------------------------------
+    // 🔴 步驟五：Modal 控制邏輯 (維持不變)
+    // -----------------------------------------------------------------
+
+    // --- (開啟「新增」Modal) ---
+    openAddModalBtn.onclick = function() {
+        addForm.reset(); 
+        addModal.style.display = 'block';
+    }
+
+    // --- (關閉「所有」Modal - 透過 X) ---
+    allCloseButtons.forEach(button => {
+        button.onclick = function() {
+            addModal.style.display = 'none';
+            editModal.style.display = 'none';
+        }
+    });
+
+    // --- (關閉「所有」Modal - 透過點擊背景) ---
+    window.onclick = function(event) {
+        if (event.target == editModal || event.target == addModal) {
+            editModal.style.display = 'none';
+            addModal.style.display = 'none';
+        }
+    }
+
+    // -----------------------------------------------------------------
+    // 🔴 步驟六：啟動！
+    // -----------------------------------------------------------------
+    fetchProducts();
+});
