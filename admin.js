@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     // 🔴 步驟二：初始化 Supabase Client
     // -----------------------------------------------------------------
-    const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    const { createClient } = supabase;
+    const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
     // -----------------------------------------------------------------
     // 🔴 步驟三：抓取所有 DOM 元素
