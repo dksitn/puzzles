@@ -1,119 +1,124 @@
-/* ----- 標題樣式 ----- */
+/* ----- R9 V2.0：冷色系 (Cool-toned) 主題 ----- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f2f5; /* R9: 冷色系 - 淺灰藍色背景 */
+    color: #333; /* R9: 主要文字顏色 */
+    margin: 0;
+    padding: 0;
+}
 
-/* h1 (主標題) (Lesson 2) */
+header {
+    background-color: #2c3e50; /* R9: 冷色系 - 深藍色 (近海軍藍) */
+    color: #ffffff; /* R9: 白色文字 */
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #34495e; /* R9: 冷色系 - 較淺的深藍色 */
+    color: #ecf0f1; /* R9: 冷色系 - 淺灰色文字 */
+    font-size: 0.9em;
+}
+
+/* R9: 主要連結顏色 */
+a {
+    color: #3498db; /* R9: 冷色系 - 鮮豔的藍色 */
+}
+a:hover {
+    color: #2980b9; /* R9: 滑鼠懸停時加深 */
+    text-decoration: none;
+}
+
+/* ----- R9: 標題樣式 (移除紅色) ----- */
 h1 {
-    color: red; /* 你選擇的紅色 */
+    color: #ffffff; /* R9: 配合 Header 背景改為白色 */
+    margin-top: 0;
+}
+h2 {
+    border-bottom: 2px solid #bdc3c7; /* R9: 冷色系 - 淺灰色底線 */
+    padding-bottom: 5px;
+    color: #2c3e50; /* R9: 標題使用深藍色 */
+}
+h3 {
+    color: #34495e;
 }
 
-/* ----- 圖片樣式 (Lesson 13 修正版) ----- */
-
-/* R6: 使用 ID (#) 選擇器，專門控制「大頭貼」 */
-#profile-pic {
-    width: 150px;       /* 150px 寬 */
-    height: auto;       /* 高度自動 */
-    border-radius: 39%; /* 圓形 */
-}
-
-/* R6: 使用 Class (.) 選擇器，統一控制「所有」截圖 */
-.gallery-image {
-    width: 100px;           /* R6: 滿足你的需求 (和大頭貼一樣寬) */
-    height: auto;           /* 高度自動 */
-    border: 1px solid #ccc; /* 加上淺色邊框 */
-    border-radius: 0;       /* 截圖用方形 */
-}
-
-/* ----- R6/R9: V5.0 - 兩欄式 Flexbox 佈局 (For products.html) ----- */
+/* ----- R9: V5.1 - 最終版兩欄式 Flexbox 佈局 (清理重複) ----- */
+/* R9 註：我已將你 CSS 檔案中 3 份重複的規則，整合成這 1 份 */
 
 /* 1. 總容器 (.page-container) */
-.page-container {
-    display: flex; /* R6 關鍵：啟用 Flexbox 佈局！ */
-    width: 90%;    /* 總寬度 90% */
-    margin: 20px auto; /* 上下 20px，左右自動 (置中) */
-}
-
-/* 2. 左側欄 (.sidebar) */
-.sidebar {
-    flex-basis: 200px;  /* R6: 給它 200px 的「基礎寬度」 */
-    margin-right: 20px; /* R6: 和右邊的內容隔開 20px */
-    padding: 15px;      /* R6: 內部留白 */
-    background-color: #f4f4f4; /* R6: 給個淺灰色背景，方便辨識 */
-    border-radius: 8px; /* R6: 加個圓角 */
-}
-
-/* 3. 右側主內容 (.main-content) */
-.main-content {
-    flex: 1; /* R6 關鍵：告訴它「吃掉所有剩下的空間」！ */
-}
-
-/* R6 (選用)：美化 V3.0 商品卡片 (來自 products.js) */
-.product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* R6: 加上一點陰影 */
-}
-
-/* R6 (選用)：美化商品圖片 */
-.product-card img {
-    width: 100%; /* R6: 讓圖片 100% 寬 */
-    max-width: 200px; /* R6: 但最大不要超過 200px */
-    height: auto;
-    border-radius: 4px; /* R6: 圖片也加個小圓角 */
-}
-/* ----- R6/R9: V5.0 - 兩欄式 Flexbox 佈局 (For products.html) ----- */
-
-/* R7/R6 提醒：你(學員)在 Turn 57 遺漏了這一塊！ */
-/* 1. 總容器 (.page-container) */
-.page-container {
-    display: flex; /* R6 關鍵：啟用 Flexbox 佈局！ */
-    width: 90%;    /* 總寬度 90% */
-    margin: 20px auto; /* 上下 20px，左右自動 (置中) */
-}
-
-/* R7/R6 提醒：你(學員)在 Turn 57 應該「已經」有以下這些規則了 */
-/* 2. 左側欄 (.sidebar) */
-.sidebar {
-    flex-basis: 200px;  /* R6: 給它 200px 的「基礎寬度」 */
-    margin-right: 20px; /* R6: 和右邊的內容隔開 20px */
-    /* ... (其他 .sidebar 規則) ... */
-    background-color: #f4f4f4; /* R6: 灰色背景 */
-}
-
-/* 3. 右側主內容 (.main-content) */
-.main-content {
-    flex: 1; /* R6 關鍵：告訴它「吃掉所有剩下的空間」！ */
-}
-
-/* ... (以及 R6 在 Turn 57 提供的 .product-card 規則) ... */
-
-/* ----- R6/R9: V5.1 - 最終版兩欄式 + 卡片 Flexbox 佈局 ----- */
-
-/* R6: (V5.0) 總容器 (保持不變) */
 .page-container {
     display: flex; 
     width: 90%;    
+    max-width: 1200px; /* R9: 新增最大寬度，在大螢幕上更好看 */
     margin: 20px auto; 
 }
 
-/* R6: (V5.0) 左側欄 (保持不變) */
+/* 2. 左側欄 (.sidebar) */
 .sidebar {
-    flex-basis: 200px;  
+    flex-basis: 220px;  /* R9: 稍微加寬 */
+    flex-shrink: 0;   /* R9: 告訴側邊欄「不准縮小」 */
     margin-right: 20px; 
     padding: 15px;      
-    background-color: #f4f4f4; 
+    background-color: #ffffff; /* R9: 改為白色背景，更有層次感 */
     border-radius: 8px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* R9: 加上陰影 */
 }
 
-/* R6: (V5.0) 右側主內容 (保持不變) */
+/* 3. 右側主內容 (.main-content) */
 .main-content {
-    flex: 1; 
+    flex: 1; /* R9: 告訴它「吃掉所有剩下的空間」 */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
-/* ----- R6/R9: V5.1 卡片內部 Flexbox (重點修改) ----- */
+/* ----- R9: V2.0 - Sidebar 內部樣式 ----- */
+#profile-pic {
+    width: 150px;       /* 150px 寬 */
+    height: 150px;      /* R9: 設為 1:1 確保圓形 */
+    border-radius: 50%; /* R9: 設為 50% 變成完美圓形 */
+    display: block;
+    margin: 0 auto 15px; /* R9: 置中並增加下方間距 */
+    border: 3px solid #f0f2f5; /* R9: 加上背景色邊框 */
+}
 
-/* 1. 卡片總容器 (.product-card) */
+.contact-info {
+    text-align: center;
+    font-size: 0.9em;
+}
+.contact-info h3 {
+    margin-top: 0;
+}
+
+.main-nav-links ul {
+    list-style-type: none; /* R9: 移除項目符號 */
+    padding-left: 0;
+}
+.main-nav-links li {
+    margin-bottom: 8px;
+}
+.main-nav-links a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #34495e; /* R9: 導覽連結使用深藍色 */
+    display: block; /* R9: 讓整個區域都能點擊 */
+    padding: 5px;
+    border-radius: 4px;
+}
+.main-nav-links a:hover,
+.main-nav-links a b { /* R9: 讓目前頁面 (<b>) 和滑鼠懸停 (hover) 樣式一致 */
+    background-color: #ecf0f1; /* R9: 冷色系 - 淺灰色懸停背景 */
+    color: #3498db; /* R9: 懸停時變亮藍色 */
+}
+
+
+/* ----- R9: V5.1 卡片內部 Flexbox (來自舊 CSS) ----- */
 .product-card {
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -121,24 +126,117 @@ h1 {
     margin-bottom: 15px;
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-
-    /* R6/R9 V5.1 關鍵新增：在「卡片內部」啟用 Flexbox！ */
     display: flex;
-    justify-content: space-between; /* R6: 讓左右元素推到最開 */
-    align-items: flex-start;      /* R6: 頂端對齊 */
+    justify-content: space-between; 
+    align-items: flex-start;      
 }
-
-/* 2. (V5.1 新增) 文字資訊容器 (.product-info) */
 .product-info {
-    flex: 1; /* R6: 告訴文字容器「吃掉所有能吃的空間」 */
-    margin-right: 15px; /* R6: 和右邊的圖片 隔開 */
+    flex: 1; 
+    margin-right: 15px; 
 }
-
-/* 3. (V5.1 新增) 卡片圖片 (.product-card-image) */
 .product-card-image {
-    flex-basis: 150px;  /* R6: 給圖片 150px 的「基礎寬度」 */
-    flex-shrink: 0;   /* R6: 告訴圖片「不准縮小」 */
-    width: 150px;       /* R6: 確保寬度 */
+    flex-basis: 150px;  
+    flex-shrink: 0;   
+    width: 150px;       
     height: auto;
     border-radius: 4px; 
+}
+
+/* ----- R9 V2.0 RWD：漢堡選單 (Hamburger Menu) ----- */
+/* R9 註：請將這整段程式碼，貼到你 style.css 的「最底部」 */
+
+#hamburger-icon {
+    display: none; /* R9: 預設在電腦版(Desktop)隱藏 */
+    width: 30px;
+    height: 25px;
+    position: absolute; /* R9: 釘選在 Header 左上角 */
+    top: 25px;
+    left: 20px;
+    cursor: pointer;
+    z-index: 1001; /* R9: 確保在最上層 */
+}
+
+#hamburger-icon span {
+    display: block;
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    background: #ffffff; /* R9: 白色線條 */
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+
+/* R9: 漢堡選單的三條線 */
+#hamburger-icon span:nth-child(1) { top: 0px; }
+#hamburger-icon span:nth-child(2) { top: 10px; }
+#hamburger-icon span:nth-child(3) { top: 20px; }
+
+/* R9: 漢堡選單 "X" (開啟狀態) */
+#hamburger-icon.open span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+}
+#hamburger-icon.open span:nth-child(2) {
+    opacity: 0; /* R9: 中間那條隱藏 */
+    left: -60px;
+}
+#hamburger-icon.open span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+}
+
+
+/* ----- R9 V2.0 RWD：響應式 (Media Query) ----- */
+
+@media (max-width: 768px) {
+    /* R9: 在 768px 寬度以下 (手機/平板) */
+
+    /* 1. 讓 Header 標題稍微置中 (因為 icon 浮動了) */
+    header {
+        text-align: center;
+        padding-left: 50px; /* R9: 避免文字蓋到 icon */
+        position: relative; /* R9: 確保 icon 的 absolute 定位正確 */
+    }
+
+    /* 2. 顯示漢堡選單 */
+    #hamburger-icon {
+        display: block;
+    }
+
+    /* 3. 讓兩欄式佈局變回「單欄」 */
+    .page-container {
+        flex-direction: column; /* R9: 垂直堆疊 */
+        width: 100%;
+        margin: 0;
+        padding: 0 10px; /* R9: 增加手機左右邊距 */
+        box-sizing: border-box; /* R9: 確保 padding 不會超寬 */
+    }
+
+    /* 4. 預設「隱藏」Sidebar */
+    .sidebar {
+        position: fixed; /* R9: 改為固定位置，才能滑出 */
+        left: -250px; /* R9: 預設藏在左邊螢幕外 */
+        top: 0;
+        height: 100vh; /* R9: 佔滿整個螢幕高度 */
+        width: 220px;
+        margin-right: 0;
+        z-index: 1000;
+        transition: left 0.3s ease-in-out; /* R9: 滑動動畫 */
+        overflow-y: auto; /* R9: 如果連結太多，允許捲動 */
+        padding-top: 60px; /* R9: 避免內容被 Header 蓋住 */
+    }
+    
+    /* 5. 當 Sidebar 被 "open" (JS toggle) 時 */
+    .sidebar.open {
+        left: 0; /* R9: 滑入螢幕 */
+    }
+
+    /* 6. 主內容 (main-content) 佔滿全寬 */
+    .main-content {
+        width: auto;
+        margin: 15px 0; /* R9: 在手機上給一點垂直邊距 */
+    }
 }
