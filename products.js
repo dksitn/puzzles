@@ -4,8 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     // 🔴 步驟一：填入你的 Supabase 金鑰 (與 admin.js 相同)
     // -----------------------------------------------------------------
-    const SUPABASE_URL = 'https://[你的專案 ID].supabase.co'; // ❗ 請貼上你複製的 'Project URL'
-    const SUPABASE_KEY = 'ey...'; // ❗ 請貼上你複製的 'anon (public)' Key
+    const SUPABASE_URL = 'https://rxsmiinxcciiboxjngux.supabase.co'; // ❗ 請貼上你複製的 'Project URL'
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4c21paW54Y2NpaWJveGpuZ3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5Nzk2MDIsImV4cCI6MjA3NzU1NTYwMn0.icPAhASfz4BK0hSFDOSc2D2bMRv_NxfTKKZUl4Pwq2Y'; // ❗ 請貼上你複製的 'anon (public)' Key
     
     // -----------------------------------------------------------------
     // 🔴 步驟二：初始化 Supabase Client
