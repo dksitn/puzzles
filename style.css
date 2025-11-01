@@ -295,34 +295,37 @@ h3 {
     cursor: pointer;
 }
 
-/* 4. 彈窗內的表單樣式 */
-#edit-product-form label,
-#add-product-form label {
-    display: block;
-    margin-top: 10px;
+/* ----- R9 V6.2 升級版：通用 Modal 表單樣式 ----- */
+
+/* 1. 表單群組 (R9 新增：控制間距) */
+.modal .form-group {
+    margin-bottom: 15px; 
+}
+
+/* 2. 通用標籤 (Label) */
+.modal label {
+    display: block; /* R9: 標籤單獨一行 */
+    margin-bottom: 5px; /* R9: 標籤和輸入框的間距 */
     font-weight: bold;
     color: #34495e;
 }
 
-#edit-product-form input[type="text"],
-#edit-product-form input[type="number"],
-#edit-product-form input[type="url"],
-#edit-product-form textarea,
-#add-product-form input[type="text"],
-#add-product-form input[type="number"],
-#add-product-form input[type="url"],
-#add-product-form textarea {
-    width: 95%; /* R9: 寬度 95% (避免 padding 撐爆) */
+/* 3. 通用輸入框 (Input / Textarea) */
+.modal input[type="text"],
+.modal input[type="number"],
+.modal input[type="url"],
+.modal textarea {
+    width: 98%; /* R9: 調整寬度 */
     padding: 10px;
-    margin-top: 5px;
     border: 1px solid #bdc3c7;
     border-radius: 4px;
     font-size: 1em;
+    box-sizing: border-box; /* R9: 確保 padding 不會撐爆 */
 }
 
-#edit-product-form button,
-#add-product-form button {
-    background-color: #3498db; /* R9: 冷色系 - 藍色按鈕 */
+/* 4. 通用提交按鈕 (Submit) */
+.modal button[type="submit"] {
+    background-color: #3498db; 
     color: white;
     padding: 10px 15px;
     border: none;
@@ -332,8 +335,7 @@ h3 {
     margin-top: 15px;
 }
 
-#edit-product-form button:hover,
-#add-product-form button:hover {
+.modal button[type="submit"]:hover {
     background-color: #2980b9;
 }
 
