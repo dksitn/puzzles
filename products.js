@@ -1,4 +1,4 @@
-/* ----- R9 V5.1 Supabase 訪客專用 (Read-Only) ----- */
+/* ----- R9 V5.7 Supabase 訪客專用 (V5.7 邏輯升級) ----- */
 document.addEventListener('DOMContentLoaded', function() {
     
     // -----------------------------------------------------------------
@@ -25,16 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
 
     /**
-     * (R) 讀取 (Read)：讀取並顯示所有商品
+     * (R) 讀取 (Read)：(❗❗ R9 V5.7 升級 ❗❗)
      */
     async function fetchProducts() {
         loadingMessage.style.display = 'block';
         errorMessage.style.display = 'none';
         cardsContainer.innerHTML = '';
 
+        // (R9: Supabase API 呼叫)
         const { data: products, error } = await supabaseClient
             .from('products') // ❗ 來自你的資料表
-            .select('*');     // ❗ 抓取所有欄位
+            .select('*')     // ❗ 抓取所有欄位
+            .gt('quantity', 0); // ❗❗ R9 V5.7 關鍵邏輯：只抓取 quantity「大於 0」的商品
 
         if (error) {
             console.error('Supabase 讀取錯誤:', error.message);
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p data-field="quantity"><b>庫存: ${product.quantity}</b></p>
                     <p data-field="description">${product.description || ''}</p>
                 </div>
-                <div class="product-image-container">
+                <div class.product-image-container">
                     <img src="${product.image_url || 'images/my-photo.png'}" alt="${product.name}" class="product-card-image">
                 </div>
                 `;
