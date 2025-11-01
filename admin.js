@@ -4,14 +4,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     // 🔴 步驟一：填入你的 Supabase 金鑰 (來自 R6 的 SOP 1)
     // -----------------------------------------------------------------
-    const SUPABASE_URL = 'https://rxsmiinxcciiboxjngux.supabase.co'; // ❗ 請貼上你複製的 'Project URL'
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4c21paW54Y2NpaWJveGpuZ3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5Nzk2MDIsImV4cCI6MjA3NzU1NTYwMn0.icPAhASfz4BK0hSFDOSc2D2bMRv_NxfTKKZUl4Pwq2Y'; // ❗ 請貼上你複製的 'anon (public)' Key
+    const SUPABASE_URL = 'https://rxsmiinxcciiboxjngux.supabase.co'; // ❗ 範例，請貼上你複製的 'Project URL'
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4c21paW54Y2NpaWJveGpuZ3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5Nzk2MDIsImV4cCI6MjA3NzU1NTYwMn0.icPAhASfz4BK0hSFDOSc2D2bMRv_NxfTKKZUl4Pwq2Y'; // ❗ 範例，請貼上你複製的 'anon (public)' Key
     
     // -----------------------------------------------------------------
-    // 🔴 步驟二：初始化 Supabase Client
+    // 🔴 步驟二：初始化 Supabase Client (❗❗ R9 語法修正 ❗❗)
     // -----------------------------------------------------------------
+    // 🟢 R9 修正版：使用「解構賦值」來取得 createClient 函式
     const { createClient } = supabase;
     const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
 
     // -----------------------------------------------------------------
     // 🔴 步驟三：抓取所有 DOM 元素
@@ -44,8 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
         errorMessage.style.display = 'none';
         cardsContainer.innerHTML = '';
 
-        // (R9: Supabase API 呼叫)
-        const { data: products, error } = await supabase
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
+        const { data: products, error } = await supabaseClient
             .from('products') // ❗ 來自你的資料表
             .select('*');     // ❗ 抓取所有欄位
 
@@ -113,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
             image_url: document.getElementById('product-image-url').value
         };
 
-        // (R9: Supabase API 呼叫)
-        const { data, error } = await supabase
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
+        const { data, error } = await supabaseClient
             .from('products')
             .insert(newProduct)
             .select(); // ❗ R9: 要求 Supabase 把新增的資料回傳
@@ -154,8 +156,8 @@ document.addEventListener('DOMContentLoaded', function() {
             image_url: document.getElementById('edit-product-image-url').value
         };
 
-        // (R9: Supabase API 呼叫)
-        const { data, error } = await supabase
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
+        const { data, error } = await supabaseClient
             .from('products')
             .update(updatedProduct) // ❗ R9: 要更新的資料
             .eq('id', productId);     // ❗ R9: 更新哪一筆 (WHERE id = ...)
@@ -180,8 +182,8 @@ document.addEventListener('DOMContentLoaded', function() {
         
         const productId = document.getElementById('edit-product-id').value;
 
-        // (R9: Supabase API 呼叫)
-        const { error } = await supabase
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
+        const { error } = await supabaseClient
             .from('products')
             .delete()             // ❗ R9: 刪除
             .eq('id', productId); // ❗ R9: 刪除哪一筆 (WHERE id = ...)

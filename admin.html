@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>商品管理與瀏覽 - Supabase 實戰</title>
+    <title>管理後台 - Supabase 實戰</title>
     <meta name="description" content="運用 Supabase 和 PostgreSQL 建立的商品列表與管理功能。">
 
-    <script async src="https://www.googtagmanager.com/gtag/js?id=G-TZ5HPBYDWV"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZ5HPBYDWV"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -25,7 +25,7 @@
             <span></span>
             <span></span>
         </div>
-        <h1>商品管理與瀏覽</h1>
+        <h1>商品管理後台</h1>
         <p>運用 Supabase 打造的動態網站</p>
     </header>
 
@@ -47,9 +47,8 @@
                 <h3>網站導覽</h3>
                 <ul>
                     <li><a href="index.html">首頁</a></li>
-                    <li><a href="achievements.html">個人專業履歷</a></li>
-                    <li><a href="debug_log.html">Gemini 合作日誌</a></li>
-                    <li><a href="products.html"><b>API 實戰 (商品)</b></a></li>
+                    <li><a href="products.html">API 實戰 (訪客)</a></li>
+                    <li><a href="admin.html"><b>管理後台 (Admin)</b></a></li>
                 </ul>
             </nav>
         </aside>
@@ -75,6 +74,7 @@
                 </form>
             </section>
 
+            
             <section id="products-list">
                 <h2>所有商品</h2>
                 <div id="product-cards-container">
@@ -91,6 +91,7 @@
         <p>&copy; 專頁伺服器採用Railway / 程式碼放置於Github / VS Code 編譯器</p>
     </footer>
 
+    
     <div id="editProductModal" class="modal">
         <div class="modal-content">
             <span class="close-button">&times;</span>
@@ -116,9 +117,10 @@
         </div>
     </div>
 
+    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <script src="main.js"></script>
-    <script src="products.js"></script>
+    <script src="admin.js"></script>
 </body>
 </html>
