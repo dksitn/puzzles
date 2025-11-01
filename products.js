@@ -1,4 +1,4 @@
-/* ----- R9 V6.1 Supabase 訪客專用 (新增 Inquiry 功能) ----- */
+/* ----- R9 V6.2 Supabase 訪客專用 (新增 Inquiry + Quantity 功能) ----- */
 document.addEventListener('DOMContentLoaded', function() {
     
     // -----------------------------------------------------------------
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p data-field="quantity"><b>庫存: ${product.quantity}</b></p>
                     <p data-field="description">${product.description || ''}</p>
                 </div>
-                <div class="product-image-container">
+                <div class.product-image-container">
                     <img src="${product.image_url || 'images/my-photo.png'}" alt="${product.name}" class="product-card-image">
                 </div>
                 <div class="button-container">
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // -----------------------------------------------------------------
-    // 🔴 步驟五：Modal 控制與提交 (❗❗ R9 V6.1 新增 ❗❗)
+    // 🔴 步驟五：Modal 控制與提交 (❗❗ R9 V6.2 升級 ❗❗)
     // -----------------------------------------------------------------
 
     /**
@@ -101,12 +101,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function openContactModal(product) {
         document.getElementById('modal-product-name').textContent = product.name;
         document.getElementById('modal-product-name-fk').value = product.name; // ❗ R9: 儲存 'name' (PKey)
+        document.getElementById('purchase_quantity').value = 1; // ❗ R9 V6.2 新增：重設為 1
         statusMessage.textContent = '';
         contactModal.style.display = 'block';
     }
 
     /**
-     * (C) 新增 (Create)：處理「聯繫購買」表單
+     * (C) 新增 (Create)：處理「聯繫購買」表單 (❗❗ R9 V6.2 升級 ❗❗)
      */
     contactForm.addEventListener('submit', async function(event) {
         event.preventDefault(); // ❗ R6: 停止表單預設提交
@@ -118,7 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
             client_name: document.getElementById('client-name').value,
             client_contact: document.getElementById('client-contact').value,
             inquiry_text: document.getElementById('inquiry-text').value,
-            product_name_fk: document.getElementById('modal-product-name-fk').value // ❗ R9: 傳送 PKey
+            product_name_fk: document.getElementById('modal-product-name-fk').value, // ❗ R9: 傳送 PKey
+            purchase_quantity: parseInt(document.getElementById('purchase_quantity').value, 10) // ❗❗ R9 V6.2 新增 ❗❗
         };
 
         // (R9: Supabase API 呼叫 - ❗ 寫入 'customer_contacts' 表)

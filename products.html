@@ -2,11 +2,9 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>商品列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale1.0">
+    <title>商品列表 - 訪客頁</title>
     <meta name="description" content="運用 Supabase 和 PostgreSQL 建立的商品列表。">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TZ5HPBYDWV"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -14,10 +12,8 @@
         gtag('js', new Date());
         gtag('config', 'G-TZ5HPBYDWV');
     </script>
-    
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
     <header>
         <div id="hamburger-icon">
@@ -30,19 +26,13 @@
     </header>
 
     <div class="page-container">
-
         <aside class="sidebar">
             <img id="profile-pic" src="images/my-photo.png" alt="沈廷翼的大頭貼">
-            
             <div class="contact-info">
                 <h3>聯繫資訊</h3>
-                <p>
-                    Email: <a href="mailto:dksitn@gmail.com">dksitn@gmail.com</a>
-                </p>
+                <p>Email: <a href="mailto:dksitn@gmail.com">dksitn@gmail.com</a></p>
             </div>
-            
             <hr> 
-            
             <nav class="main-nav-links">
                 <h3>網站導覽</h3>
                 <ul>
@@ -54,7 +44,6 @@
         </aside>
 
         <main class="main-content">
-            
             <section id="products-list">
                 <h2>所有商品</h2>
                 <div id="product-cards-container">
@@ -70,8 +59,42 @@
         <p>&copy; 以上專頁，由沈廷翼開發的Gemini Gem 輔助下完成</p>
     </footer>
 
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span> 
+            <h2>聯繫購買商品</h2>
+            <p>您即將詢問：<strong id="modal-product-name"></strong></p>
+
+            <form id="contact-form">
+                <input type="hidden" id="modal-product-name-fk" name="product_name_fk">
+                
+                <div class="form-group">
+                    <label for="client-name">您的姓名:</label>
+                    <input type="text" id="client-name" name="client_name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="client-contact">您的 Email/電話:</label>
+                    <input type="text" id="client-contact" name="client_contact" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="purchase_quantity">購買數量:</label>
+                    <input type="number" id="purchase_quantity" name="purchase_quantity" required min="1" value="1">
+                    </div>
+
+                <div class="form-group">
+                    <label for="inquiry-text">詢問內容 (選填):</label>
+                    <textarea id="inquiry-text" name="inquiry_text"></textarea>
+                </div>
+                
+                <button type="submit" id="submit-contact">送出詢問</button>
+                <p id="contact-status-message" style="margin-top: 10px; font-weight: bold;"></p>
+            </form>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    
     <script src="main.js"></script>
     <script src="products.js"></script>
 </body>
