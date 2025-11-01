@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     // 🔴 步驟二：初始化 Supabase Client (❗❗ R9 語法修正 ❗❗)
     // -----------------------------------------------------------------
-    // 🟢 R9 修正版：使用「解構賦值」來取得 createClient 函式
     const { createClient } = supabase;
     const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -33,7 +32,6 @@ document.addEventListener('DOMContentLoaded', function() {
         errorMessage.style.display = 'none';
         cardsContainer.innerHTML = '';
 
-        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
         const { data: products, error } = await supabaseClient
             .from('products') // ❗ 來自你的資料表
             .select('*');     // ❗ 抓取所有欄位
@@ -50,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /**
-     * (R8) 渲染 (Render)：將資料畫成卡片
+     * (R8) 渲染 (Render)：(❗❗ R9 V5.6 升級 ❗❗)
      */
     function renderProductCards(products) {
         if (!products || products.length === 0) {
@@ -62,10 +60,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const card = document.createElement('div');
             card.className = 'product-card'; // (R9: 套用 style.css)
             
+            // ❗ R9 V5.6 升級：新增 `product.quantity` 顯示
             card.innerHTML = `
                 <div class="product-info">
                     <h3 data-field="name">${product.name}</h3>
                     <p data-field="price">價格: $${product.price}</p>
+                    <p data-field="quantity"><b>庫存: ${product.quantity}</b></p>
                     <p data-field="description">${product.description || ''}</p>
                 </div>
                 <div class="product-image-container">
