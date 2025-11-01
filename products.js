@@ -4,12 +4,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // -----------------------------------------------------------------
     // 🔴 步驟一：填入你的 Supabase 金鑰 (與 admin.js 相同)
     // -----------------------------------------------------------------
-    const SUPABASE_URL = 'https://rxsmiinxcciiboxjngux.supabase.co'; // ❗ 請貼上你複製的 'Project URL'
-    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4c21paW54Y2NpaWJveGpuZ3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5Nzk2MDIsImV4cCI6MjA3NzU1NTYwMn0.icPAhASfz4BK0hSFDOSc2D2bMRv_NxfTKKZUl4Pwq2Y'; // ❗ 請貼上你複製的 'anon (public)' Key
+    const SUPABASE_URL = 'https://rxsmiinxcciiboxjngux.supabase.co'; // ❗ 範例，請貼上你複製的 'Project URL'
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4c21paW54Y2NpaWJveGpuZ3V4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjE5Nzk2MDIsImV4cCI6MjA3NzU1NTYwMn0.icPAhASfz4BK0hSFDOSc2D2bMRv_NxfTKKZUl4Pwq2Y'; // ❗ 範例，請貼上你複製的 'anon (public)' Key
     
     // -----------------------------------------------------------------
-    // 🔴 步驟二：初始化 Supabase Client
+    // 🔴 步驟二：初始化 Supabase Client (❗❗ R9 語法修正 ❗❗)
     // -----------------------------------------------------------------
+    // 🟢 R9 修正版：使用「解構賦值」來取得 createClient 函式
     const { createClient } = supabase;
     const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
 
@@ -32,7 +33,8 @@ document.addEventListener('DOMContentLoaded', function() {
         errorMessage.style.display = 'none';
         cardsContainer.innerHTML = '';
 
-        const { data: products, error } = await supabase
+        // (R9: Supabase API 呼叫 - ❗ 修正為 supabaseClient)
+        const { data: products, error } = await supabaseClient
             .from('products') // ❗ 來自你的資料表
             .select('*');     // ❗ 抓取所有欄位
 
