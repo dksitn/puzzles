@@ -240,3 +240,109 @@ h3 {
         margin: 15px 0; /* R9: 在手機上給一點垂直邊距 */
     }
 }
+
+/* ----- R9 V5.2 關鍵新增：Modal (彈出視窗) 樣式 ----- */
+/* R9 註：請將這整段程式碼，貼到你 style.css 的「最底部」 */
+
+/* 1. 彈窗背景 (黑色半透明) */
+.modal {
+    display: none; /* R9: 預設隱藏 (JS 會控制它) */
+    position: fixed; /* R9: 關鍵！讓它浮動並釘選在畫面上 */
+    z-index: 2000; /* R9: 確保在最上層 (比漢堡選單還高) */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* R9: 如果內容太長，允許捲動 */
+    background-color: rgba(0, 0, 0, 0.6); /* R9: 黑色半透明背景 */
+}
+
+/* 2. 彈窗內容 (白色方塊) */
+.modal-content {
+    background-color: #ffffff;
+    margin: 10% auto; /* R9: 垂直 10% 邊距，水平自動置中 */
+    padding: 25px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* R9: 最大寬度 */
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s; /* R9: 簡易淡入動畫 */
+}
+
+/* R9: 淡入動畫 */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(-20px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* 3. 彈窗關閉按鈕 (X) */
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 4. 彈窗內的表單樣式 */
+#edit-product-form label,
+#add-product-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #34495e;
+}
+
+#edit-product-form input[type="text"],
+#edit-product-form input[type="number"],
+#edit-product-form input[type="url"],
+#edit-product-form textarea,
+#add-product-form input[type="text"],
+#add-product-form input[type="number"],
+#add-product-form input[type="url"],
+#add-product-form textarea {
+    width: 95%; /* R9: 寬度 95% (避免 padding 撐爆) */
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#edit-product-form button,
+#add-product-form button {
+    background-color: #3498db; /* R9: 冷色系 - 藍色按鈕 */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+}
+
+#edit-product-form button:hover,
+#add-product-form button:hover {
+    background-color: #2980b9;
+}
+
+/* 5. 刪除按鈕的特殊樣式 */
+#delete-product-button {
+    background-color: #e74c3c; /* R9: 紅色 */
+    margin-left: 10px;
+}
+
+#delete-product-button:hover {
+    background-color: #c0392b; /* R9: 深紅色 */
+}
