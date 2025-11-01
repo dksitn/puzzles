@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>商品管理與瀏覽 - Supabase 實戰</title>
+    <meta name="description" content="運用 Supabase 和 PostgreSQL 建立的商品列表與管理功能。">
+
+    <script async src="https://www.googtagmanager.com/gtag/js?id=G-TZ5HPBYDWV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-TZ5HPBYDWV');
+    </script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <div id="hamburger-icon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <h1>商品管理與瀏覽</h1>
+        <p>運用 Supabase 打造的動態網站</p>
+    </header>
+
+    <div class="page-container">
+
+        <aside class="sidebar">
+            <img id="profile-pic" src="images/my-photo.png" alt="沈廷翼的大頭貼">
+            
+            <div class="contact-info">
+                <h3>聯繫資訊</h3>
+                <p>
+                    Email: <a href="mailto:dksitn@gmail.com">dksitn@gmail.com</a>
+                </p>
+            </div>
+            
+            <hr> 
+            
+            <nav class="main-nav-links">
+                <h3>網站導覽</h3>
+                <ul>
+                    <li><a href="index.html">首頁</a></li>
+                    <li><a href="achievements.html">個人專業履歷</a></li>
+                    <li><a href="debug_log.html">Gemini 合作日誌</a></li>
+                    <li><a href="products.html"><b>API 實戰 (商品)</b></a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="main-content">
+            
+            <section id="add-product-section" style="margin-bottom: 30px;">
+                <h2>新增商品</h2>
+                <form id="add-product-form">
+                    <label for="product-name">商品名稱:</label>
+                    <input type="text" id="product-name" required><br>
+
+                    <label for="product-description">商品描述:</label>
+                    <textarea id="product-description"></textarea><br>
+
+                    <label for="product-price">商品價格:</label>
+                    <input type="number" id="product-price" required><br>
+
+                    <label for="product-image-url">商品圖片 URL:</label>
+                    <input type="url" id="product-image-url"><br>
+
+                    <button type="submit">新增商品</button>
+                </form>
+            </section>
+
+            <section id="products-list">
+                <h2>所有商品</h2>
+                <div id="product-cards-container">
+                    </div>
+                <p id="loading-message">載入商品中...</p>
+                <p id="error-message" style="color: red; display: none;">載入商品失敗。請檢查網路連線或 API。</p>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <p>我正在經過我建造的Gemini Gem的指導下，學習如何從零打造動態網站。</p>
+        <p>&copy; 以上專頁，由沈廷翼開發的Gemini Gem 輔助下完成</p>
+        <p>&copy; 專頁伺服器採用Railway / 程式碼放置於Github / VS Code 編譯器</p>
+    </footer>
+
+    <div id="editProductModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>編輯商品</h2>
+            <form id="edit-product-form">
+                <input type="hidden" id="edit-product-id">
+
+                <label for="edit-product-name">商品名稱:</label>
+                <input type="text" id="edit-product-name" required><br>
+
+                <label for="edit-product-description">商品描述:</label>
+                <textarea id="edit-product-description"></textarea><br>
+
+                <label for="edit-product-price">商品價格:</label>
+                <input type="number" id="edit-product-price" required><br>
+
+                <label for="edit-product-image-url">商品圖片 URL:</label>
+                <input type="url" id="edit-product-image-url"><br>
+
+                <button type="submit">更新商品</button>
+                <button type="button" id="delete-product-button" style="background-color: #e74c3c;">刪除商品</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <script src="main.js"></script>
+    <script src="products.js"></script>
+</body>
+</html>
